@@ -1,0 +1,341 @@
+/* تأكد أن html و body ما فيهم هوامش */
+html, body {
+  margin: 0;
+  padding: 0;
+} 
+.rt{
+ margin: 30px 15px -15px 0;
+ font-size: 18px;
+}
+/*  تأكد أن header ما يسبب مشاكل */
+header {
+  position: relative;
+  text-decoration: underline;/*يظهر خط تحت الزر عندما تكون الماوس فوقه*/
+  z-index: 10;
+}
+
+/*  الشريط الأبيض العلوي */
+.set {
+  position: fixed;                        /* يخلي الشريط بأعلى الصفحة */
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgb(255, 255, 255); /* أبيض   */
+  backdrop-filter: blur(4px);            /* تأثير بلوري */
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+  z-index: 20;
+}
+
+.set nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.set nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  font-size: 17px;
+  transition: color 0.3s ease;
+}
+
+.set nav ul li a:hover {
+  color: #007bff;
+   text-decoration: underline;  /* خط تحت الرابط عند المرور */
+}
+
+/*  الشريط البرتقالي تحته مباشرة */
+.orange-bar {
+  position: fixed;
+  top: 40px; /* تحت الشريط الأبيض حسب ارتفاعه */
+  left: 0;
+  width: 100%;
+  /*background-color: rgb(255, 102, 0);*/
+  padding: 12px 0;
+  z-index: 19;
+  box-shadow: 0 0px 0px rgba(11, 2, 128, 0.1);
+}
+
+.orange-bar nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+.orange-bar nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  transition: color 0.3s ease;
+   text-decoration: underline;  /* خط تحت الرابط عند المرور */
+}
+
+.orange-bar nav ul li a:hover {
+  color:  rgb(6, 6, 184);
+
+}
+
+
+
+
+body {
+ background-image: url('file_00000000e018620a8bedd1a3572cbb61.png');
+ /*background-color: #FFA726;*/
+  background-size: cover;
+  background-position: center right; /* الصورة تظهر على اليمين */
+  background-repeat: no-repeat;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  display: 0;
+  align-items: center;      /* تمركز عمودي */
+  justify-content: flex-start; /* الفورم على اليسار */
+  padding-left: 50px;      /* مسافة من اليسار */
+}
+
+/* تنسيق form */
+.from {
+  background-color: white;         /* خلفية بيضاء */
+  padding: 25px 40px;                   /* مسافة داخلية */
+  border-radius: 25px;             /* زوايا دائرية */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6); /* ظل خفيف */
+  width: 400px;                    /* عرض الفورم */
+  height: 450px;
+  position: absolute;             /* تموضع مطلق */
+  top: 60%;                        /* في منتصف الصفحة عموديًا */
+  left: 14px;                      /* على يسار الصفحة */
+  transform: translateY(-40%);     /* ضبط التموضع للوسط عموديًا */
+}
+.button {
+  cursor: pointer;
+  color: aliceblue;
+  transform: translateX(-16% );
+  font-size: 20px;
+  background-color: rgb(62, 177, 62);
+  padding: 15px 100px; /* زيادة في العرض */
+  margin-top: -15px;
+  display: inline-block;
+  border-radius: 100px;
+  border:none;
+  
+  
+}
+.button:hover {
+  background-color: rgb(97, 227, 97); 
+}
+.icon{
+  font-size: 20px;
+
+}
+.radio{
+    direction: rtl;
+   display: flex;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  gap: 30px;
+  font-weight: bold;
+  color: #333;
+}
+input[type="radio"] {
+  appearance: none;          /* إزالة الشكل الافتراضي */
+  width: 18px;
+  height: 18px;
+  border: 2px solid #999;    /* إطار رمادي افتراضي */
+  border-radius: 50%;        /* دائرة */
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+input[type="radio"]:checked {
+  border-color: green;       /* الإطار يصبح أخضر عند التحديد */
+}
+
+input[type="radio"]:checked::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 8px;
+  height: 8px;
+  background-color: green;   /*  النقطة الخضراء */
+  border-radius: 50%;
+}
+/* تنسيق عام لحاوية الحقل */
+.select {
+  margin-bottom: 10px;
+    direction: rtl;
+}
+
+/* تنسيق عنوان الحقل */
+.select label {
+  display: flex;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+}
+
+/* تنسيق حقل select فقط */
+.select select {
+  width: 100%;                        /* عرض كامل */
+  padding: 12px 17px;
+  font-size: 17px;
+  border: 2px solid #ccc;
+  border-radius: 10px;                /* زوايا ناعمة */
+  background-color: white;
+  color: #333;
+  cursor: pointer;
+  appearance: none;                   /* إزالة السهم الافتراضي */
+  background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 80px center; /* السهم على اليسار (للعربي) */
+  background-size: 16px;
+  padding-right: 40px;
+  transition: border-color 0.3s ease;
+}
+
+/* تأثير عند التركيز */
+.select select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+.select-wrapper {
+  position: relative; /* مهم عشان الأيقونة تتوضع بالنسبة للحاوية */
+}
+
+.select-wrapper i {
+  position: absolute;    /*  كرمال تكون الأيقونة بشكل متنساق ومكان ثابت*/
+  top: 68%;           /* منشان تكون الأيقونة بنص الحقل تقريبا  */
+  right:  10px;         /* منشان نقدر نتحكم لايقون بشكل افقي */
+  transform: translateY(-50%); /* عشان تتوسط الأيقونة تماماً */
+  color: #003366;     /* لون الأيقونة */
+  font-size: 20px;    /* حجم الأيقونة */
+  pointer-events: none; /* منشان  الأيقونة ما تعطل المستخدم */
+}
+
+.select select {
+  padding-left: 40px; /* مسافة داخلية عشان ما يغطي النص */
+}
+
+/* CSS */
+.number {
+  margin: 2px 0;
+  font-family: 'Arial', sans-serif;
+  font-size: 20px;
+  direction: rtl;
+  margin-top: -18px;
+}
+
+.number-input {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-top: 3px;
+}
+
+.number-input input[type="number"] {
+  width: 50px;
+  height: 30px;
+  text-align: center;
+  border: 0px solid #ccc;
+  font-size: 20px;
+  background-color: #f9f9f9;
+}
+
+.number-input button {
+  width: 35px;
+  height: 35px;
+  background-color:#FFA726;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.number-input button:hover {
+  background-color: #b97105;
+}
+.date {
+  display: flex;              /* يحط المحتوى أفقياً */
+  flex-direction: row-reverse; /* عشان RTL */
+  gap: 25px;                  /* مسافة بين الحقول */
+  margin-top: -15px;
+  margin-bottom: 20px;
+}
+
+.date-field {
+  display: flex;              /* كل حقل عنصر عمودي */
+  flex-direction: column;     /* عنوان فوق، حقل تحته */
+  gap: 10px;                  /* مسافة داخلية بين العنوان والحقل */
+  width: 50%;                 /* كل حقل ياخد نصف العرض */
+}
+
+.date-wrapper {
+  position: relative;         /* عشان نحط الأيقونة مطلقة */
+  width: fit-content;         /* حجم الحقل يتناسب مع المحتوى */
+  direction: rtl;             /* اتجاه الكتابة للعربية */
+}
+
+.date-wrapper i {
+  position: absolute;         /* الأيقونة فوق الحقل */
+  top: 50%;                  /* في منتصف الحقل عمودياً */
+  left:  10px;               /* على اليمين */
+  transform: translateY(-50%); /* تمركز عمودي دقيق */
+  color: #003366;
+  font-size: 18px;
+  pointer-events: none;       /* ما تأثر على الضغط على الحقل */
+}
+
+.date-wrapper input[type="date"] {
+  width: 180px;
+  height: 40px;
+  padding-right: 35px;        /* مساحة للأيقونة */
+  font-size: 15px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-family: 'Arial', sans-serif;
+  background: white;
+  color: #333;
+  direction: ltr;             /* التاريخ والوقت بالإنجليزي */
+  appearance: none;           /* إخفاء الأيقونة الافتراضية */
+  
+  appearance: none;           /* لمتصفحات كروم وإيدج */
+  -webkit-appearance: none;   /* لمتصفح سفاري */
+  -moz-appearance: none;      /* لمتصفح فايرفوكس */
+}
+.date-wrapper input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+.signup-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  display:inline-block;
+  position: relative;
+  margin-top:30px;
+  right:  90%;
+}
+
+.signup-button:hover {
+  background-color: #0056b3;
+}
+
+
+
+
+

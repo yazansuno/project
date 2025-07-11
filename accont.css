@@ -1,0 +1,61 @@
+.new{
+  font-size: 18px;
+}
+body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #f89e16;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.form{
+ position: fixed;   /* تموضع الفورم*/
+ background-color: white; /* لون الفورم*/
+ padding: 30px 40px;/*حواف الفورم*/
+ border-radius: 12px;/* درجة لف زاوية الفورم*/
+ box-shadow: 0 0 15px rgb(0 , 0 , 0 , 0.5); /*بيعطي ظل للفورم  */
+ width: 300px;/*عرض الفورم*/
+ height: 430px;/* طول الفورم*/
+ top: 100px;/* ضبط ارتفاع الفورم*/
+ left: 48%;/* */
+ transform: translateX(-50%);/* التحكم فيها بشكل افقي*/
+ 
+   
+}
+.form h1{
+    text-align: center;/* ضبط النص في المنتصف*/
+    margin-bottom: 15px;
+    color: #333; /**/
+
+}
+.form label{
+    display:block;
+    margin-bottom: 5px;
+    color: #252525;
+    font-size: 17px;
+
+
+}
+.form input{
+    width: 250px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+.form button{
+    width: 75%;
+    transform: translateX(-14%);
+    padding: 5px;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+

@@ -1,0 +1,89 @@
+.trip-card {
+  border: 2px solid #ccc;              /* إطار رمادي فاتح حول البطاقة */
+  padding: 15px;                       /* مساحة داخلية حول المحتوى */
+  margin-bottom: 15px;                 /* مسافة بين كل بطاقة وأخرى */
+  border-radius: 6px;                  /* زوايا دائرية للإطار */
+  background-color: #f9f9f9;           /* خلفية فاتحة للبطاقة */
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3); /* ظل خفيف تحت البطاقة لإعطاء عمق */
+  transition: box-shadow 0.3s ease;   /* تأثير انتقالي سلس عند تغير الظل */
+}
+.trip-card:hover{
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);/*لما يجي المؤشر فوق ال كارد بصير قي ظل اكتر */
+}
+.trip-card p,b {
+color: #333;
+font-size: 16px;
+
+}
+.trip-card p b + span {
+  margin-left: 6px; /*مسافة صغيرة بين العنوان و الايقونة*/
+  font-size: 20px;/* حجم الايقونة*/
+  vertical-align: middle;/*عملنا الايقنة عاموديا مع النص*/
+  
+}
+.select-btn {
+  margin-top:12px; /* فراغ فوق الزر منشان نقصلا عن يلي فوق*/
+  padding: 8px 16px;/*عملنا مساحة لزر منشان يكون مليان*/
+  background-color: #007bff;/* لون الخلفية زرقة*/
+  border: none;/*بتشبل اطار الزر الافتراضي*/
+  color: white;/*نص الزر لونو ابيض*/
+  border-radius: 4px;/*بتخلي زواية الزر دائرية*/
+  cursor: pointer;/*بصير شكل المؤشر يد*/
+  font-weight: bold;/*تكثيف نص الزر*/
+  transition: bacground-color 0.3 ease ;/**/
+}
+.select-btn:hover:not(:disabled) {
+  background-color: #0056b3;/*بصير لون الازرق اغمق لما يجي المؤشر فوقو*/
+
+}
+.select-btn:disabled {
+  background-color: #999;
+  cursor: not-allowed;/*يصبح المؤشر ممنوع*/
+}
+#confirmSection{
+  background-color: #eef7ee;
+  border-radius: 6px; /*زاوية دائرية*/ 
+  padding: 20px; /*مساحة داخلية*/
+  max-width: 500px; /*عرضالعنصر*/
+
+}
+#confirmSection h3 {
+color: #2e7d32; /*لون النص*/
+
+}
+#cancelBtn {
+  background-color: #ccc;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px; /*مسافة على اليمين بين الزرين*/
+
+}
+#cancelBtn:hover {
+  background-color: #aaa;
+
+}
+#cancelBtn {
+  background-color: #3f4e40;
+  color: white;
+  border: none;
+  padding: 8px 14px ;
+  border-radius: 4px;/* */
+  cursor: pointer;
+}
+#cancelBtn:hover {
+  background-color: #4f574f;
+}
+#confirmBtn {
+  background-color:#2e7d32 ;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#confirmBtn:hover {
+background-color: #3e9e42;
+
+}

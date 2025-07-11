@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bus</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+
+  <section id="booking">
+    <div class="booking-form">
+      <br>
+     <!-- الشريط الأبيض -->
+      <header>
+<div class="set">
+  <nav>
+    <ul>
+      <li><a href="">عن الشركة</a></li>
+      <li><a href="">الأسئلة الشائعة</a></li>
+      <li><a href="">سياسة الخصوصية</a></li>
+      <li><a href="">الشروط و الأحكام</a></li>
+      <li><a href="">اتصل بنا</a></li>
+    </ul>
+  </nav>
+</div>س
+
+<!-- الشريط البرتقالي -->
+<div class="orange-bar">
+  <nav>
+    <ul>
+      <li><a href="">الصفحة الرئيسية</a></li>
+      <li><a href="">وجهات السفر</a></li>
+      <li><a href="">محطات السفر</a></li>
+    </ul>
+  </nav>
+</div>
+<div>
+  <a href="new accont.html" class="signup-button">إنشاء حساب</a>
+</div>
+
+
+</header>
+
+      <br>
+   <main>
+      <form method="get" id="bookingForm" class="from">
+        <!-- نوع الرحلة -->
+        <div class="radio" id="typego">
+          <label>
+            <input type="radio" name="tripType" value="oneway" checked onclick="toggleReturnDate()" >
+            ذهاب فقط
+          </label>
+
+          <label>
+            <input type="radio" name="tripType" value="roundtrip" onclick="toggleReturnDate()" >
+            ذهاب وعودة
+          </label>
+        </div>
+
+        <br />
+
+        <br />
+
+        <div class="select">
+            <div class="select-wrapper"> 
+
+                <i class="fas fa-location-dot"></i>
+          
+          <label for="from">السفر من المدينة</label>
+          <select id="from" name="from" required>
+            <option value="اللذقية">اللذقية</option>
+            <option value="دمشق">دمشق</option>
+            <option value="حماة">حماة</option>
+            <option value="حلب">حلب</option>
+            <option value="السويداء">السويداء</option>
+            <option value="حمص">حمص</option>
+            <option value="الرقة">الرقة</option>
+            <option value="دير الزور">دير الزور</option>
+          </select>
+              </div>
+        </div>
+
+
+        <br />
+
+        <!-- السفر إلى -->
+        <div class="select">
+           <div class="select-wrapper"> 
+              
+                <i class="fas fa-location-dot"></i>         
+          <label for="to">السفر إلى المدينة</label>
+          <select id="to" name="to" required>
+            <option value="اللذقية">اللذقية</option>
+            <option value="دمشق">دمشق</option>
+            <option value="حماة">حماة</option>
+            <option value="حلب">حلب</option>
+            <option value="السويداء">السويداء</option>
+            <option value="حمص">حمص</option>
+            <option value="الرقة">الرقة</option>
+            <option value="دير الزور">دير الزور</option>
+          </select>
+          <span class="arrow"></span>
+             </div>
+        </div>
+      
+            <br />
+
+        <!-- التاريخ-->
+       <div class="date" id="Date">
+
+  <div class="date-field">
+    <label for="departureDate">تاريخ الذهاب:</label>
+    <div class="date-wrapper">
+      <i class="fa-solid fa-calendar-days"></i>
+      <input type="date" name="departureDate" id="departureDate" required />
+    </div>
+  </div>
+
+  <div class="date-field">
+    <label for="returnDate">تاريخ العودة:</label>
+    <div class="date-wrapper">
+      <i class="fa-solid fa-calendar-days"></i>
+      <input type="date" name="returnDate" id="returnDate" disabled />
+    </div>
+  </div>
+
+</div>
+
+        <br>
+          <!--عدد المساقرين-->
+<div class="number">
+  <label for="passengers">عدد المسافرين</label>
+  <div class="number-input">
+    <button type="button" onclick="decreasePassengers()">−</button>
+    <input type="number"  id="passengers" name="passengers" min="1" max="12" value="1" readonly />
+    <button type="button" onclick="increasePassengers()">+</button>
+  </div>
+</div>
+
+
+        <br />
+
+        <!-- زر عرض الرحلات -->
+        <button type="submit" id="submit" class="button">أعرض الرحلات 
+        
+        </button>
+
+      </form>
+      </main>
+
+    </div>
+    <div class="rt">
+
+     
+
+            <h1><b>تجربة سفر مريحة و ممتعة</b> </h1> 
+
+             </div>
+       
+
+    </div>
+      
+  </section>
+  <script>
+     function toggleReturnDate() {
+  const tripType = document.querySelector('input[name="tripType"]:checked').value;
+  const returnLabel = document.getElementById("returnDateLabel");
+
+  if (tripType === "roundtrip") {
+    returnLabel.style.display = "block";
+  } else {
+    returnLabel.style.display = "none";
+  }
+}
+
+window.onload = toggleReturnDate;
+  </script>
+ 
+
+
+  <script>
+    // دالة تفعيل/تعطيل تاريخ العودة
+    function toggleReturnDate() {
+      const roundtrip = document.querySelector('input[name="tripType"][value="roundtrip"]').checked;
+      const returnDateInput = document.getElementById("returnDate");
+      returnDateInput.disabled = !roundtrip;
+      if (!roundtrip) returnDateInput.value = "";
+    }
+
+    // استدعاء الدالة مرة أولى لتحديث الحالة عند تحميل الصفحة
+    toggleReturnDate();
+
+    // معالجة إرسال النموذج
+    document.getElementById("bookingForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const from = document.getElementById("from").value;
+      const to = document.getElementById("to").value;
+      const departureDate = document.getElementById("departureDate").value;
+      const tripType = document.querySelector('input[name="tripType"]:checked').value;
+      const returnDate = document.getElementById("returnDate").value;
+      const passengers = document.getElementById("passengers").value;
+
+      if (from === to) {
+        alert("يرجى اختيار وجهة مختلفة عن وجهة المغادرة.");
+        return;
+      }
+
+      // حفظ البيانات في localStorage
+      const tripData = {
+        from,
+        to,
+        departureDate,
+        returnDate,
+        tripType,
+        passengers
+      };
+
+      localStorage.setItem("tripData", JSON.stringify(tripData));
+
+      // الانتقال لصفحة النتائج
+      window.location.href = "rualest.html";
+    });
+  </script>
+  <script>
+  function increasePassengers() {
+    const input = document.getElementById('passengers');
+    let current = parseInt(input.value);
+    if (current < parseInt(input.max)) {
+      input.value = current + 1;
+    }
+  }
+
+  function decreasePassengers() {
+    const input = document.getElementById('passengers');
+    let current = parseInt(input.value);
+    if (current > parseInt(input.min)) {
+      input.value = current - 1;
+    }
+  }
+</script>
+
+
+</body>
+</html>
+

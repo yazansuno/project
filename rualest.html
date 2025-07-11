@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <title>نتائج الرحلات</title>
+  <link rel="stylesheet" href="rualest.css" />
+</head>
+<body>
+  <h2>معلومات الرحلة</h2>
+  <div id="tripInfo"></div>
+
+  <h3>الرحلات المتوفرة:</h3>
+  <div class="er" id="availableTrips"></div>
+
+  <div id="confirmSection" style="display:none; margin-top: 30px; border-top: 2px solid #ccc; padding-top: 15px;">
+    <h3>✅ ملخص الحجز:</h3>
+    <p><b>الرحلة المختارة:</b> من <span id="selectedFrom"></span> إلى <span id="selectedTo"></span></p>
+    <p><b>وقت الانطلاق:</b> <span id="selectedDepart"></span></p>
+    <p><b>السعر الكلي:</b> <span id="selectedTotalPrice"></span> ل.س</p>
+    <button id="cancelBtn">❌ إلغاء الاختيار</button>
+    <button id="confirmBtn">✅ تأكيد الحجز</button>
+  </div>
+
+  <script>
+    // جلب بيانات الحجز من localStorage
+    const tripData = JSON.parse(localStorage.getItem("tripData"));
+
+    if (!tripData) {
+      document.body.innerHTML = "<p>لا توجد بيانات حجز.</p>";
+    } else {
+      const { from, to, departureDate, returnDate, tripType, passengers } = tripData;
+      const numPassengers = parseInt(passengers);
+
+      // عرض معلومات الرحلة الأساسية
+      document.getElementById("tripInfo").innerHTML = `
+        <p><b>من:</b> ${from}</p>
+        <p><b>إلى:</b> ${to}</p>
+        <p><b>تاريخ الذهاب:</b> ${departureDate}</p>
+        ${tripType === "roundtrip" ? `<p><b>تاريخ العودة:</b> ${returnDate}</p>` : ""}
+        <p><b>عدد المسافرين:</b> ${numPassengers}</p>
+        <p><b>نوع الرحلة:</b> ${tripType === "roundtrip" ? "ذهاب وعودة" : "ذهاب فقط"}</p>
+      `;
+
+      // الرحلات التجريبية مع الميزات
+      const trips = [
+        {
+          from: "اللاذقية",
+          to: "دمشق",
+          departTime: "08:00",
+          arriveTime: "12:00",
+          price: 5000,
+          features: [
+            { name: "Wi-Fi", icon: "📶" },
+            { name: "طعام", icon: "🍽️" },
+            { name: "مقاعد مريحة", icon: "💺" }
+          ]
+        },
+        {
+          from: "اللاذقية",
+          to: "دمشق",
+          departTime: "14:00",
+          arriveTime: "18:00",
+          price: 5500,
+          features: [
+            { name: "Wi-Fi", icon: "📶" },
+            { name: "مكيف", icon: "❄️" }
+          ]
+        },
+        {
+          from: "دمشق",
+          to: "حلب",
+          departTime: "09:00",
+          arriveTime: "15:00",
+          price: 7000,
+          features: [
+            { name: "طعام", icon: "🍽️" },
+            { name: "شحن USB", icon: "🔌" }
+          ]
+        },
+        {
+          from: "حلب",
+          to: "حمص",
+          departTime: "07:00",
+          arriveTime: "09:30",
+          price: 3000,
+          features: [
+            { name: "مقاعد مريحة", icon: "💺" }
+          ]
+        }
+      ];
+
+      // تصفية الرحلات بناء على بيانات المستخدم
+      const matchedTrips = trips.filter(trip => trip.from === from && trip.to === to);
+
+      const tripsDiv = document.getElementById("availableTrips");
+
+      if (matchedTrips.length === 0) {
+        tripsDiv.innerHTML = "<p>لا توجد رحلات متاحة لهذه الوجهة.</p>";
+      } else {
+        matchedTrips.forEach((trip, index) => {
+          // حساب السعر الكلي بحسب عدد المسافرين
+          const totalPrice = trip.price * numPassengers;
+
+          // تحضير HTML للميزات مع أيقونات
+          const featuresHtml = trip.features.map(f => 
+            `<span title="${f.name}" style="margin-left:6px; font-size:18px;">${f.icon}</span>`
+          ).join("");
+
+          tripsDiv.innerHTML += `
+            <div class="trip-card" data-index="${index}">
+              <p><b>وقت الانطلاق:</b> <span class="depart">${trip.departTime}</span></p>
+              <p><b>وقت الوصول:</b> ${trip.arriveTime}</p>
+              <p><b>السعر لكل راكب:</b> <span class="price">${trip.price}</span> ل.س</p>
+              <p><b>السعر الكلي (${numPassengers} مسافرين):</b> <span class="total-price">${totalPrice}</span> ل.س</p>
+              <p><b>الميزات:</b> ${featuresHtml}</p>
+              <button class="select-btn">اختيار هذه الرحلة</button>
+            </div>
+          `;
+        });
+      }
+
+      // إضافة تفاعل زر اختيار الرحلة
+      document.addEventListener("click", function(e) {
+        if (e.target.classList.contains("select-btn")) {
+          const card = e.target.closest(".trip-card");
+
+          document.getElementById("selectedFrom").textContent = from;
+          document.getElementById("selectedTo").textContent = to;
+          document.getElementById("selectedDepart").textContent = card.querySelector(".depart").textContent;
+          document.getElementById("selectedTotalPrice").textContent = card.querySelector(".total-price").textContent;
+
+          // إظهار قسم تأكيد الحجز
+          document.getElementById("confirmSection").style.display = "block";
+
+          // تعطيل جميع أزرار اختيار الرحلات الأخرى
+          document.querySelectorAll(".select-btn").forEach(btn => btn.disabled = true);
+
+          // زر إلغاء الاختيار يعيد كل شيء كما كان
+          document.getElementById("cancelBtn").onclick = () => {
+            document.getElementById("confirmSection").style.display = "none";
+            document.querySelectorAll(".select-btn").forEach(btn => btn.disabled = false);
+          };
+
+          // زر تأكيد الحجز
+          document.getElementById("confirmBtn").onclick = () => {
+            alert("✅ تم تأكيد الحجز (سيتم ربطه لاحقاً مع الباك إند).");
+          };
+        }
+      });
+    }
+  </script>
+</body>
+</html>
